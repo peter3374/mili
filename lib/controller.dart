@@ -31,6 +31,7 @@ class MyContoller extends GetxController {
     Flashlight.lightOff();
   }
 
+// rotate icon
   Future runRotation() async {
     for (int i = 0; i < 100000000000000; i++) {
       await Future.delayed(Duration(milliseconds: 100));
