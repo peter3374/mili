@@ -1,6 +1,6 @@
-# minimal_light
+# mili
 
-A new Flutter project.
+Simple flashlight
 
 ## Getting Started
 
