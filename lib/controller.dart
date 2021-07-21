@@ -18,7 +18,7 @@ class MyContoller extends GetxController {
   void onInit() {
     super.onInit();
     myBanner.load();
-    runRotation();
+    // runRotation();
   }
 
   void TorchOn() async {
@@ -32,10 +32,10 @@ class MyContoller extends GetxController {
   }
 
 // rotate icon
-  Future runRotation() async {
-    for (int i = 0; i < 100000000000000; i++) {
-      await Future.delayed(Duration(milliseconds: 100));
-      rotation.value = rotation.value + 0.3;
-    }
-  }
+  // Future runRotation() async {
+  //   for (int i = 0; i < 100000000000000; i++) {
+  //     await Future.delayed(Duration(milliseconds: 100));
+  //     rotation.value = rotation.value + 0.3;
+  //   }
+
 }

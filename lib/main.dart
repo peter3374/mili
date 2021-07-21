@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'package:minimal_light/controller.dart';
 
 void main() {
@@ -41,8 +42,8 @@ class HomePage extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         color: _controller.isDark.value
-            ? _controller.colorList[0]
-            : _controller.colorList[1],
+            ? _controller.colorList[1]
+            : _controller.colorList[0],
         child: Stack(
           children: [
             Padding(
@@ -69,8 +70,8 @@ class HomePage extends StatelessWidget {
                         child: Icon(
                           Icons.brightness_1_sharp,
                           color: _controller.isDark.value
-                              ? _controller.colorList[1]
-                              : _controller.colorList[0],
+                              ? _controller.colorList[0]
+                              : _controller.colorList[1],
                           size: 100,
                         ),
                       )),
@@ -84,8 +85,8 @@ class HomePage extends StatelessWidget {
                       child: Icon(
                         Icons.brightness_2_sharp,
                         color: _controller.isDark.value
-                            ? _controller.colorList[1]
-                            : _controller.colorList[0],
+                            ? _controller.colorList[0]
+                            : _controller.colorList[1],
                         size: 100,
                       ),
                     ),
@@ -99,87 +100,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-Widget TransformIcon({@required IconData icon}) {
-  Transform.rotate(
-      angle: 0,
-      child: InkWell(
-        onTap: null,
-        child: Icon(
-          icon,
-          color: _controller.isDark.value
-              ? _controller.colorList[0]
-              : _controller.colorList[1],
-          size: 100,
-        ),
-      ));
-}
-
-
-
-/*
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Obx(
-      () => Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: _controller.isDark.value
-            ? _controller.colorList[1]
-            : _controller.colorList[0],
-        child: Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: 0,
-                left: MediaQuery.of(context).size.width * 0.115,
-              ),
-              child: Container(
-                height: 50,
-                width: 320,
-                child: AdWidget(
-                  ad: _controller.myBanner,
-                ),
-              ),
-            ),
-            Center(
-              child: Column(
-                children: [
-                  GestureDetector(
-                      child: TransformIcon(
-                        icon: Icons.brightness_2_sharp,
-                      ),
-                      onTap: () => _controller.useTorch()),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  GestureDetector(
-                    child: TransformIcon(icon: Icons.brightness_1_sharp),
-                    onTap: () => _controller.useTorch(),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-Widget TransformIcon({@required IconData icon}) {
-  Transform.rotate(
-    angle: 0,
-    child: Icon(
-      icon,
-      color: _controller.isDark.value
-          ? _controller.colorList[0]
-          : _controller.colorList[1],
-      size: 100,
-    ),
-  );
-}
-*/
