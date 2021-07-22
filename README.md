@@ -1,6 +1,6 @@
 # mili (minimal-light)
 
-Simple flashlight
+Simple flashlight. Custom icon included.
 
 
 
