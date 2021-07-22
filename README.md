@@ -1,9 +1,13 @@
-# mili
+# mili (minimal-light)
 
 Simple flashlight
 
 
 
-https://user-images.githubusercontent.com/56002552/126625961-3d39e7dd-b264-42e7-a87a-ebfb05e4775c.mp4
+
+
+https://user-images.githubusercontent.com/56002552/126626154-cfdf5331-a983-4c4c-8d74-4c885a08fffe.mp4
+
+
 
 
