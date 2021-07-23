@@ -20,12 +20,12 @@ Use this variable only for animation;
     listener: BannerAdListener(),
   );
 
-  void TorchOn() async {
+  void TorchOn() {
     isDark.value = false;
     Flashlight.lightOn();
   }
 
-  void TorchOff() async {
+  void TorchOff() {
     isDark.value = true;
     Flashlight.lightOff();
   }
