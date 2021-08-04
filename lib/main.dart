@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Mili',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.blue,
         ),
         home: Scaffold(
           body: SafeArea(
@@ -42,54 +42,48 @@ class HomePage extends StatelessWidget {
         color: _controller.isDark.value
             ? _controller.colorList[1]
             : _controller.colorList[0],
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: 0,
-                left: MediaQuery.of(context).size.width * 0.115,
-              ),
-              // ad Banner is here
-              child: Container(
-                height: 50,
-                width: 320,
-                child: AdWidget(
-                  ad: _controller.myBanner,
-                ),
+            Container(
+              height: 50,
+              width: 320,
+              child: AdWidget(
+                ad: _controller.myBanner,
               ),
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Sun icon
-                  IconButton(
-                    icon: Icon(
-                      Icons.brightness_1_sharp,
-                      size: 100,
-                    ),
-                    color: _controller.isDark.value
-                        ? _controller.colorList[0]
-                        : _controller.colorList[1],
-                    onPressed: () => _controller.TorchOn(),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  // Lune icon
-                  IconButton(
-                    color: _controller.isDark.value
-                        ? _controller.colorList[0]
-                        : _controller.colorList[1],
-                    icon: Icon(
-                      Icons.brightness_2_sharp,
-                      size: 100,
-                    ),
-                    onPressed: () => _controller.TorchOff(),
-                  ),
-                ],
+            // Sun icon
+            Material(
+              color: Colors.transparent,
+              child: IconButton(
+                iconSize: 100,
+                splashRadius: 30,
+                icon: Icon(
+                  Icons.brightness_1_sharp,
+                  // size: 100,
+                ),
+                color: _controller.isDark.value
+                    ? _controller.colorList[0]
+                    : _controller.colorList[1],
+                onPressed: () => _controller.TorchOn(),
               ),
-            )
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            // Lune icon
+            IconButton(
+              iconSize: 100,
+              splashRadius: 30,
+              color: _controller.isDark.value
+                  ? _controller.colorList[0]
+                  : _controller.colorList[1],
+              icon: Icon(
+                Icons.brightness_2_sharp,
+                //  size: 100,
+              ),
+              onPressed: () => _controller.TorchOff(),
+            ),
           ],
         ),
       ),
