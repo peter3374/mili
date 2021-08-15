@@ -1,9 +1,9 @@
 // @dart=2.9
+import 'package:flashlight/flashlight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mili/controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,63 +29,86 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  // getx controller;
-  MyContoller _controller = Get.put(MyContoller());
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List colorList = [Colors.white, Colors.black];
+  var isDark = true;
+
+  final BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-2661805624872444/1020514305',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+  @override
+  void initState() {
+    myBanner.load();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    myBanner.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: _controller.isDark.value
-            ? _controller.colorList[1]
-            : _controller.colorList[0],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 50,
-              width: 320,
-              child: AdWidget(
-                ad: _controller.myBanner,
-              ),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: isDark ? colorList[1] : colorList[0],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          // ad banner
+          Container(
+            height: 50,
+            width: 320,
+            child: AdWidget(
+              ad: myBanner,
             ),
-            // Sun icon
-            Material(
-              color: Colors.transparent,
-              child: IconButton(
-                iconSize: 100,
-                splashRadius: 30,
-                icon: Icon(
-                  Icons.brightness_1_sharp,
-                  // size: 100,
-                ),
-                color: _controller.isDark.value
-                    ? _controller.colorList[0]
-                    : _controller.colorList[1],
-                onPressed: () => _controller.TorchOn(),
-              ),
+          ),
+          // Sun icon
+          IconButton(
+            iconSize: 100,
+            splashRadius: 30,
+            icon: Icon(
+              Icons.brightness_1_sharp,
+              // size: 100,
             ),
-            SizedBox(
-              height: 50,
+            color: isDark ? colorList[0] : colorList[1],
+            onPressed: () {
+              setState(() {
+                isDark = false;
+                Flashlight.lightOn();
+              });
+            },
+          ),
+
+          SizedBox(
+            height: 50,
+          ),
+          // Lune icon
+          IconButton(
+            iconSize: 100,
+            splashRadius: 30,
+            color: isDark ? colorList[0] : colorList[1],
+            icon: Icon(
+              Icons.brightness_2_sharp,
             ),
-            // Lune icon
-            IconButton(
-              iconSize: 100,
-              splashRadius: 30,
-              color: _controller.isDark.value
-                  ? _controller.colorList[0]
-                  : _controller.colorList[1],
-              icon: Icon(
-                Icons.brightness_2_sharp,
-                //  size: 100,
-              ),
-              onPressed: () => _controller.TorchOff(),
-            ),
-          ],
-        ),
+            onPressed: () {
+              setState(() {
+                isDark = true;
+                Flashlight.lightOff();
+              });
+            },
+          ),
+        ],
       ),
     );
   }
